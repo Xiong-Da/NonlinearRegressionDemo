@@ -47,7 +47,7 @@ class Reger():
             for index in range(len(countXs)):
                 gradient += res[index] * countXs[index]
                 countXs[index] *= inputXs[index]
-
+            gradient/=len(countXs)
             gradients.append(gradient)
         return gradients
 
@@ -70,6 +70,7 @@ def show(regDim,realDim=None,realParam=None,numOfSample=100,learningRate=0.001,s
         if realDim==None:
             raise RuntimeError("both realDim and realParam is None")
         realParam=randomParam(realDim)
+        print("random param:"+str(realParam))
     startParam=randomParam(regDim)
 
     reger=Reger(realParam)
@@ -81,4 +82,4 @@ def show(regDim,realDim=None,realParam=None,numOfSample=100,learningRate=0.001,s
         tools.draw(reger)
 
 if __name__=="__main__":
-    show(12,realDim=8,scale=0.05)
+    show(regDim=3,realDim=16,scale=0.05,learningRate=0.2,numOfSample=100)
